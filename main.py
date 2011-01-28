@@ -9,9 +9,20 @@
 # Licence:     <your licence>
 #-------------------------------------------------------------------------------
 #!/usr/bin/env python
+import Image
 
 def main():
-    pass
+    fp = "images\m1.jpg"
+    img = Image.open(fp)
+    img = img.convert("L")
+    saveImage(img)
+
+def saveImage(image):
+    outfile = "output.jpg"
+    try:
+        image.save(outfile)
+    except IOError:
+        print "cannot save"
 
 if __name__ == '__main__':
     main()
