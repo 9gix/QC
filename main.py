@@ -12,10 +12,23 @@
 import Image
 
 def main():
-    fp = "images\m1.jpg"
-    img = Image.open(fp)
-    img = img.convert("L")
+    # m1 == m3 # m1 != m2
+    originalImageFile = "images\m1.jpg"
+    ori = getImage(originalImageFile)
+    img = getImage("images\m3.jpg")
+    samePercentage = compare(ori,img)
     saveImage(img)
+
+def compare(ori,img):
+    ori = list(ori.getdata())
+    img = list(img.getdata())
+    print ori==img
+
+def getImage(fp):
+    return grayscale(Image.open(fp))
+
+def grayscale(img):
+    return img.convert("L")
 
 def saveImage(image):
     outfile = "output.jpg"
